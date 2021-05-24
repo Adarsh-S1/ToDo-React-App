@@ -30,6 +30,12 @@ function App() {
             setToDo({
               id: Date.now(),
               text: e.target.value,
+              day:days[new Date().getDay()],
+              date:("0" + new Date().getDate()).slice(-2) +
+              "-" +
+              ("0" + (new Date().getMonth() + 1)).slice(-2) +
+              "-" +
+              new Date().getFullYear(),
               status: false,
               deleted: false,
             });
@@ -97,7 +103,7 @@ function App() {
           <hr />
          {toDos.map((obj) => {
             if (obj.status !== true && obj.deleted !== true) {
-              return <ul><li className="list" ><h3 key={obj.id} >{obj.text}</h3></li> </ul>;
+              return <ul><center><h3 className="date"><hr />{obj.date} - {obj.day}</h3></center><hr /><li className="list" ><h3 key={obj.id} >{obj.text}</h3></li> </ul>;
             }
             return null
           })}
